@@ -26,7 +26,7 @@ public class SimpleBankingAppTest {
 		
 		mainApp.populateAccountData();
 		assert mainApp.accounts.size() == 4;
-		System.out.println("testDataLoads: populateAccountData: TC1 passed.");
+		System.out.println("testDataLoads: populateAccountData: TC2 passed.");
 		
 		// Teardown phase: no Teardown is needed for this test case, since we have not made 
 		// any changes to the system state in the test case 
@@ -42,7 +42,7 @@ public class SimpleBankingAppTest {
 		mainApp.addTransaction("5495-1234", depositAmount);
 		double balanceAfter = mainApp.getBalance("5495-1234");
 		assert balanceBefore + depositAmount == balanceAfter;
-		System.out.println("testDeposits: TC1 passed.");
+		System.out.println("testDeposits: TC3 passed.");
 		
 		// tear-down: put the system state back in where it was
 		// read more about the tear-down phase of test cases: http://xunitpatterns.com/Four%20Phase%20Test.html
@@ -56,14 +56,14 @@ public class SimpleBankingAppTest {
 		double withdrawalAmount = -40.15;
 		
 		// Exercise phase
-		mainApp.addTransaction("5495-1234", withdrawalAmount);
+		mainApp.addTransaction("5495-1234", -withdrawalAmount);
 		double balanceAfter = mainApp.getBalance("5495-1234");
 		assert balanceBefore - withdrawalAmount == balanceAfter;
-		System.out.println("testDeposits: TC1 passed.");
+		System.out.println("testDeposits: TC4 passed.");
 		
 		// tear-down: put the system state back in where it was
 		// read more about the tear-down phase of test cases: http://xunitpatterns.com/Four%20Phase%20Test.html
-		mainApp.addTransaction("5495-1234", -withdrawalAmount);
+		mainApp.addTransaction("5495-1234", withdrawalAmount);
 	}
 	
 	
